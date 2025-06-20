@@ -39,8 +39,7 @@ export const AuthProvider = ({ children }) => {
     newSocket.connect();
     setSocket(newSocket);
     newSocket.on("getOnlineUsers", (userIds) => {
-      setOnlineUsers(data.user);
-      connectSocket(data.user);
+      setOnlineUsers(userIds);
     });
   };
 
@@ -92,9 +91,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["token"] = token;
+      checkAuth();
     }
-    checkAuth();
-  }, []);
+  }, [token]);
 
   const value = {
     axios,

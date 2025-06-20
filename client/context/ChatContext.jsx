@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { AuthContext } from "./AuthContext";
-import { getMessages } from "../../server/controllers/messageController";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 
@@ -32,7 +31,7 @@ export const ChatProvider = ({ children }) => {
   //function to get messages for selected user
   const getMessages = async (userId) => {
     try {
-      await axios.get(`/api/messages/${userId}`);
+      const { data } = await axios.get(`/api/messages/${userId}`);
       if (data.success) {
         setMessages(data.messages);
       }

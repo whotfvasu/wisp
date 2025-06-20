@@ -75,7 +75,7 @@ export const markMessageAsSeen = async (req, res) => {
 //send msg to selected user
 export const sendMessage = async () => {
   try {
-    const { text, message } = req.body;
+    const { text, image } = req.body;
     const receiverId = req.params.id;
     const senderId = req.user._id;
 
