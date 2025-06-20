@@ -11,9 +11,14 @@ const app = express();
 
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "https://wisp-omega.vercel.app", // your frontend domain
+  "http://localhost:5173", // for local dev
+];
+
 //initialize socket.io server
 export const io = new Server(server, {
-  cors: { origin: "*" },
+  cors: { origin: allowedOrigins, credentials: true },
 });
 
 //store online user
