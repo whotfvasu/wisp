@@ -39,8 +39,14 @@ io.on("connection", (socket) => {
 });
 
 //middleware
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: "4mb" }));
-app.use(cors());
 
 app.use("/api/status", (req, res) => res.send("server is live"));
 app.use("/api/auth", userRouter);
