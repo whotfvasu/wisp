@@ -10,14 +10,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
   const [isDataSubmitted, setIsDataSubmitted] = useState(false);
-  const {login} = useContext(AuthContext)
+  const { login } = useContext(AuthContext);
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (currState == "Sign up" && !isDataSubmitted) {
       setIsDataSubmitted(true);
       return;
     }
-    login(currState === "Sign up"? 'signup' : 'login', {fullName,email,password,bio} )
+    login(
+      currState === "Sign up" ? "signup" : "login",
+      currState === "Sign up"
+        ? { fullName, email, password, bio }
+        : { email, password }
+    );
   };
   return (
     <div className="min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
